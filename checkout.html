@@ -159,15 +159,34 @@
         <button type="submit" class="btn btn-purple btn-lg">Place Order</button>
       </div>
     </form>
+
+    <!-- SUCCESS MESSAGE (Add this below the form) -->
+    <div id="success-message" class="alert alert-success mt-4 d-none text-center">
+      Thank you! Your order has been placed successfully.
+    </div>
   </div>
 </section>
-
 <!-- Footer -->
 <footer class="footer">
   <div class="container">
     <p>&copy; 2025 Aizlyn Crochet Shop | Handmade with Love</p>
   </div>
 </footer>
+<!-- JAVASCRIPT FOR SUCCESS MESSAGE -->
+<script>
+  document.getElementById("checkout-form").addEventListener("submit", function (e) {
+    e.preventDefault(); // prevent form from submitting normally
 
+    const firstName = document.getElementById("firstName").value.trim();
+    const lastName = document.getElementById("lastName").value.trim();
+
+    if (firstName && lastName) {
+      document.getElementById("success-message").classList.remove("d-none");
+      this.reset(); // clear form
+    } else {
+      alert("Please fill out your first and last name.");
+    }
+  });
+</script>
 </body>
 </html>
