@@ -119,7 +119,12 @@
 <section class="container">
   <div class="checkout-form">
     <h2 class="mb-4 text-center">Checkout</h2>
-    <form>
+    <!-- FIXED FORM TAG -->
+    <form id="checkout-form">
+      <div class="row g-3">
+        <!-- All your input fields here -->
+      </div>
+
       <div class="row g-3">
         <div class="col-md-6">
           <label for="firstName" class="form-label">First Name</label>
@@ -159,6 +164,7 @@
         <button type="submit" class="btn btn-purple btn-lg">Place Order</button>
       </div>
     </form>
+
 
     <!-- SUCCESS MESSAGE (Add this below the form) -->
     <div id="success-message" class="alert alert-success mt-4 d-none text-center">
