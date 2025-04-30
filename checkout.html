@@ -166,12 +166,18 @@
     </form>
 
 
-    <!-- SUCCESS MESSAGE (Add this below the form) -->
-    <div id="success-message" class="alert alert-success mt-4 d-none text-center">
-      Thank you! Your order has been placed successfully.
-    </div>
-  </div>
+    <!-- SUCCESS MESSAGE (Add this below the form) --> 
 </section>
+  <div id="success-message" class="alert alert-success mt-4 d-none">
+  <h4 class="text-center">Thank you! Your order has been placed successfully.</h4>
+  <p><strong>Name:</strong> <span id="order-name"></span></p>
+  <p><strong>Address:</strong> <span id="order-address"></span></p>
+  <p><strong>City:</strong> <span id="order-city"></span></p>
+  <p><strong>Zip Code:</strong> <span id="order-zip"></span></p>
+  <p><strong>Phone:</strong> <span id="order-phone"></span></p>
+  <p><strong>Payment Method:</strong> <span id="order-payment"></span></p>
+</div>
+
 <!-- Footer -->
 <footer class="footer">
   <div class="container">
@@ -180,19 +186,41 @@
 </footer>
 <!-- JAVASCRIPT FOR SUCCESS MESSAGE -->
 <script>
-  document.getElementById("checkout-form").addEventListener("submit", function (e) {
-    e.preventDefault(); // prevent form from submitting normally
+  document.getElementById("checkout-form").addEventListener("submit", function (e) {
+    e.preventDefault();
 
-    const firstName = document.getElementById("firstName").value.trim();
-    const lastName = document.getElementById("lastName").value.trim();
+    const firstName = document.getElementById("firstName").value.trim();
+    const lastName = document.getElementById("lastName").value.trim();
+    const address = document.getElementById("address").value.trim();
+    const city = document.getElementById("city").value.trim();
+    const zip = document.getElementById("zip").value.trim();
+    const phone = document.getElementById("phone").value.trim();
+    const payment = document.getElementById("payment").value;
 
-    if (firstName && lastName) {
-      document.getElementById("success-message").classList.remove("d-none");
-      this.reset(); // clear form
-    } else {
-      alert("Please fill out your first and last name.");
-    }
-  });
+    if (firstName && lastName) {
+      // Fill in the order details
+      document.getElementById("order-name").textContent = firstName + " " + lastName;
+      document.getElementById("order-address").textContent = address;
+      document.getElementById("order-city").textContent = city;
+      document.getElementById("order-zip").textContent = zip;
+      document.getElementById("order-phone").textContent = phone;
+      document.getElementById("order-payment").textContent = payment;
+
+      // Show success message
+      document.getElementById("success-message").classList.remove("d-none");
+      this.reset();
+
+      // Optional: Auto-hide and redirect
+      setTimeout(() => {
+        document.getElementById("success-message").classList.add("d-none");
+        window.location.href = "index.html"; // Redirect
+      }, 5000);
+    } else {
+      alert("Please complete all required fields.");
+    }
+  });
 </script>
+
+
 </body>
 </html>
